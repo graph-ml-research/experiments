@@ -1,6 +1,9 @@
 # Эксперименты
 Этот репозиторий содержит экспериментальную работу исследователей, не предназначенную для продуктива. 
 
+## Типы файлов
+Поддерживаются только текстовые файлы .txt, .py, .md$, .csv, .tsv, .json, .ya?ml. Пожалуйста, избегайте коммитов больших файлов в репозиторий.
+
 ## Язык сообщений коммитов
 
 В этом репозитории сообщения коммитов могут быть написаны на русском или английском языке.
@@ -18,6 +21,10 @@
 
 # Experiments
 Experiments with graph machine learning methods, not ready for production. 
+
+## File Types
+
+Only text files are supported: .txt, .py, .md, .csv, .tsv, .json, .ya?ml. Please avoid committing large files to the repository.
 
 ## Commit language
 
