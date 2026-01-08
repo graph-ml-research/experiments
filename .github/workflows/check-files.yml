@@ -1,0 +1,40 @@
+name: Check student commits
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Клонируем репозиторий
+      - uses: actions/checkout@v3
+
+      - name: Check file types and paths
+        run: |
+          # Разрешённые расширения
+          ALLOWED_EXT='\.py$|\.md$|\.txt$|\.csv$|\.tsv$|\.json$|\.ya?ml$'
+          
+          # Получаем все новые и изменённые файлы относительно main
+          FILES=$(git diff --name-only origin/main...HEAD)
+
+          FORBIDDEN=0
+
+          for f in $FILES; do
+            # Проверка расширения
+            if ! [[ $f =~ $ALLOWED_EXT ]]; then
+              echo "❌ Запрещённый тип файла: $f"
+              FORBIDDEN=1
+            fi
+
+          done
+
+          if [ $FORBIDDEN -eq 1 ]; then
+            echo "Ошибка: найдены запрещённые файлы. Коммит заблокирован."
+            exit 1
+          else
+            echo "✅ Все файлы проходят проверку"
+          fi
